@@ -1,6 +1,7 @@
 package stockalerts.email;
 
 import org.springframework.stereotype.Component;
+import stockalerts.utils.Recipients;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -10,7 +11,7 @@ import java.util.Properties;
 @Component
 public class EmailClient {
 
-    public void sendEmail(String subject, String body) {
+    public void sendEmail(String subject, String body, Recipients recipients) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
@@ -32,8 +33,7 @@ public class EmailClient {
             Message message = new MimeMessage(session);
             message.setRecipients(
                     Message.RecipientType.TO,
-//                    InternetAddress.parse("johnnysps5updates@gmail.com, martynwalsh1@hotmail.co.uk, alexcoglan@gmail.com")
-                    InternetAddress.parse("johnnysps5updates@gmail.com")
+                    InternetAddress.parse(recipients.getEmails())
             );
             message.setSubject(subject);
             message.setText(body);
