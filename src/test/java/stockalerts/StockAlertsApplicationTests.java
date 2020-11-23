@@ -1,4 +1,4 @@
-package com.personal.stockalerts;
+package stockalerts;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
